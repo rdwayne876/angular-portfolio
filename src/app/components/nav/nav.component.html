@@ -1,0 +1,33 @@
+<nav class="w-full flex items-center py-5 fixed top-0 z-20 bg-secondary {{style.paddingX}}">
+    <div class="w-full flex justify-between items-center max-w-7xl mx-auto">
+        <a href="/" class="flex items-center gap-2" (click)="setActive('')">
+            <img src="/assets/logo.svg" alt="logo" class="w-9 h-9 object-contain">
+            <p class="text-primary text-[18px] font-bold cursor-pointer flex">
+                Dwayne &nbsp;
+                <span class="sm:block hidden">| JS Ninja</span>
+            </p>
+        </a>
+        <ul class="list-none hidden sm:flex flex-row gap-10">
+            <li *ngFor="let link of navLinks" class="hover:text-white text-[18px] font-medium cursor-pointer"
+                [ngClass]="active == link.title ? 'text-white' : 'text-tertiary'" (click)="setActive(link.title)">
+                <a href="#{{link.id}}">
+                    {{link.title}}
+                </a>
+            </li>
+        </ul>
+        <div class="sm:hidden flex flex-1 justify-end items-center">
+            <img [src]="toggle ? close : menu" alt="" (click)="setToggle()">
+        </div>
+        <div [ngClass]="toggle ? 'flex' : 'hidden'"
+            class="p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl">
+            <ul class="list-none flex justify-end items-start flex-col gap-4">
+                <li *ngFor="let link of navLinks" class="font-poppins font-medium text-[16px] cursor-pointer"
+                    [ngClass]="active == link.title ? 'text-white' : 'text-tertiary'" (click)="setActive(link.title)">
+                    <a href="#{{link.id}}">
+                        {{link.title}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
